@@ -1,0 +1,30 @@
+{
+  "pengumuman_time": "2026-03-16T12:40:00+07:00",
+  "use_countdown": false,
+  "students": [
+    {
+      "nama_lengkap": "Budi Santoso",
+      "nis": "12345",
+      "jurusan": "Teknik Komputer dan Jaringan",
+      "status_kelulusan": "LULUS"
+    },
+    {
+      "nama_lengkap": "Siti Aminah",
+      "nis": "12346",
+      "jurusan": "Akuntansi",
+      "status_kelulusan": "LULUS"
+    },
+    {
+      "nama_lengkap": "Rudi Hermawan",
+      "nis": "12347",
+      "jurusan": "Multimedia",
+      "status_kelulusan": "TIDAK LULUS"
+    },
+    {
+      "nama_lengkap": "Dewi Lestari",
+      "nis": "12348",
+      "jurusan": "Teknik Kendaraan Ringan",
+      "status_kelulusan": "LULUS"
+    }
+  ]
+}
