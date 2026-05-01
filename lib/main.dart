@@ -13,7 +13,7 @@ class PengumumanApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Portal Kelulusan SMKN 1',
+      title: 'Kelulusan SMKN 1',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,

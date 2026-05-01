@@ -85,10 +85,24 @@ class _CountdownScreenState extends State<CountdownScreen> {
               padding: const EdgeInsets.all(30),
               child: Column(
                 children: [
-                  const Icon(
-                    Icons.verified_user_outlined,
-                    size: 50,
-                    color: Colors.amber,
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                      shape: BoxShape.circle,
+                    ),
+                    child: Image.asset(
+                      'assets/logo.png',
+                      width: 50,
+                      height: 50,
+                    ),
                   ),
                   const SizedBox(height: 15),
                   Text(
