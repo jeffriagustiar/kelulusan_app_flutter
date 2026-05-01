@@ -1,6 +1,6 @@
 {
   "pengumuman_time": "2026-05-05T00:00:00+07:00",
-  "use_countdown": true,
+  "use_countdown": false,
   "students": [
     {
       "nama_lengkap": "Budi Santoso",

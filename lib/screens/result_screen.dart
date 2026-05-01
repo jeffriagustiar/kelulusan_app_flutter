@@ -14,182 +14,246 @@ class ResultScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF4F6F9),
-      appBar: AppBar(
-        title: Text(
-          'KETERANGAN KELULUSAN',
-          style: GoogleFonts.inter(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1,
-          ),
-        ),
-        backgroundColor: const Color(0xFF0D47A1),
-        foregroundColor: Colors.white,
-        centerTitle: true,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-      ),
       body: Stack(
         children: [
-          // Main Content
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                // TOP Header Decoration
-                Container(
-                  height: 20,
-                  width: double.infinity,
-                  color: const Color(0xFF0D47A1),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(25.0),
-                  child: Column(
+          // Background Header
+          Container(
+            height: 300,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color(0xFF0D47A1),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+                bottomRight: Radius.circular(40),
+              ),
+            ),
+          ),
+          
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  // Header Logo and Title
+                  Column(
                     children: [
-                      // Animation Section
-                      SizedBox(
-                        height: 150,
-                        child: isLulus
-                            ? Lottie.asset(
-                                'assets/lottie/success.json',
-                                repeat: true,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(
-                                    Icons.check_circle_outline,
-                                    size: 100,
-                                    color: Colors.green,
-                                  );
-                                },
-                              )
-                            : const Icon(
-                                Icons.description_outlined,
-                                size: 100,
-                                color: Colors.grey,
-                              ),
-                      ),
-
-                      const SizedBox(height: 20),
-
-                      // Main Certificate Card
                       Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(30),
+                        padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.05),
-                              blurRadius: 20,
-                              offset: const Offset(0, 10),
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 10,
+                              offset: const Offset(0, 5),
                             ),
                           ],
-                          border: Border.all(color: Colors.grey[200]!),
+                          shape: BoxShape.circle,
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'INFORMASI DATA SISWA',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey[400],
-                                      letterSpacing: 2,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                ],
-                              ),
-                            ),
-
-                            _buildInfoRow(
-                              'NAMA LENGKAP',
-                              studentData['nama_lengkap']
-                                  .toString()
-                                  .toUpperCase(),
-                            ),
-                            const Divider(height: 30),
-                            _buildInfoRow(
-                              'NOMOR INDUK SISWA',
-                              studentData['nis'].toString(),
-                            ),
-                            const Divider(height: 30),
-                            _buildInfoRow(
-                              'KOMPETENSI KEAHLIAN',
-                              studentData['jurusan'].toString().toUpperCase(),
-                            ),
-
-                            const SizedBox(height: 40),
-
-                            // Final Status Banner
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.all(25),
-                              decoration: BoxDecoration(
-                                color: isLulus
-                                    ? const Color(0xFFE8F5E9)
-                                    : const Color(0xFFFFEBEE),
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                  color: isLulus
-                                      ? Colors.green[200]!
-                                      : Colors.red[200]!,
-                                ),
-                              ),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'DINYATAKAN',
-                                    style: GoogleFonts.inter(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: isLulus
-                                          ? Colors.green[700]
-                                          : Colors.red[700],
-                                      letterSpacing: 1.5,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    studentData['status_kelulusan']
-                                        .toString()
-                                        .toUpperCase(),
-                                    style: GoogleFonts.inter(
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.w900,
-                                      color: isLulus
-                                          ? Colors.green[800]
-                                          : Colors.red[800],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        child: Image.asset(
+                          'assets/logo.png',
+                          width: 60,
+                          height: 60,
                         ),
                       ),
-
-                      const SizedBox(height: 40),
-
-                      // Footer Text
+                      const SizedBox(height: 15),
                       Text(
-                        'Catatan: Ini adalah hasil pengumuman sementara. Silakan hubungi pihak sekolah untuk pengambilan Surat Keterangan Lulus (SKL) resmi.',
+                        'PENGUMUMAN KELULUSAN',
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 2,
+                          color: Colors.white.withOpacity(0.9),
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        'SMK NEGERI 1 TELUK KUANTAN',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.inter(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                          fontStyle: FontStyle.italic,
-                          height: 1.5,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
+
+                  const SizedBox(height: 30),
+
+                  // Main Certificate Card
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(30),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.08),
+                            blurRadius: 25,
+                            offset: const Offset(0, 10),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          // Animation Section
+                          SizedBox(
+                            height: 140,
+                            child: isLulus
+                                ? Lottie.asset(
+                                    'assets/lottie/success.json',
+                                    repeat: true,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return const Icon(
+                                        Icons.check_circle,
+                                        size: 100,
+                                        color: Colors.green,
+                                      );
+                                    },
+                                  )
+                                : Container(
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red.withOpacity(0.1),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Icon(
+                                      Icons.cancel_rounded,
+                                      size: 100,
+                                      color: Colors.redAccent,
+                                    ),
+                                  ),
+                          ),
+                          const SizedBox(height: 25),
+
+                          // Final Status Banner
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: isLulus
+                                    ? [Colors.green.shade400, Colors.green.shade700]
+                                    : [Colors.red.shade400, Colors.red.shade700],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: (isLulus ? Colors.green : Colors.red).withOpacity(0.3),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 5),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  isLulus ? 'SELAMAT!' : 'MOHON MAAF,',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white.withOpacity(0.9),
+                                    letterSpacing: 1.5,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  'ANDA DINYATAKAN',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white.withOpacity(0.8),
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  studentData['status_kelulusan']
+                                      .toString()
+                                      .toUpperCase(),
+                                  style: GoogleFonts.inter(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white,
+                                    letterSpacing: 2,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          const SizedBox(height: 35),
+
+                          // Student Info
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'INFORMASI DATA SISWA',
+                              style: GoogleFonts.inter(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[500],
+                                letterSpacing: 1.5,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          _buildInfoRow(
+                            'NAMA LENGKAP',
+                            studentData['nama_lengkap']
+                                .toString()
+                                .toUpperCase(),
+                            Icons.person_outline,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: Divider(height: 1),
+                          ),
+                          _buildInfoRow(
+                            'NOMOR INDUK SISWA',
+                            studentData['nis'].toString(),
+                            Icons.badge_outlined,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: Divider(height: 1),
+                          ),
+                          _buildInfoRow(
+                            'KOMPETENSI KEAHLIAN',
+                            studentData['jurusan'].toString().toUpperCase(),
+                            Icons.school_outlined,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  // Footer Text
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                    child: Text(
+                      'Catatan: Ini adalah hasil pengumuman sementara. Silakan hubungi pihak sekolah untuk pengambilan Surat Keterangan Lulus (SKL) resmi.',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.inter(
+                        fontSize: 12,
+                        color: Colors.grey[600],
+                        fontStyle: FontStyle.italic,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                ],
+              ),
             ),
           ),
 
@@ -208,26 +272,46 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
-    return Column(
+  Widget _buildInfoRow(String label, String value, IconData icon) {
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: GoogleFonts.inter(
-            fontSize: 10,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[500],
-            letterSpacing: 1,
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF0D47A1).withOpacity(0.05),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(
+            icon,
+            color: const Color(0xFF0D47A1),
+            size: 20,
           ),
         ),
-        const SizedBox(height: 8),
-        Text(
-          value,
-          style: GoogleFonts.inter(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: const Color(0xFF1A237E),
+        const SizedBox(width: 15),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: GoogleFonts.inter(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[500],
+                  letterSpacing: 1,
+                ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                value,
+                style: GoogleFonts.inter(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xFF1A237E),
+                ),
+              ),
+            ],
           ),
         ),
       ],
